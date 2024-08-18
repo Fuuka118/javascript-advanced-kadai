@@ -7,6 +7,7 @@ const typedfield = document.getElementById('typed');
 const wrap = document.getElementById('wrap');
 const start = document.getElementById('start');
 const count = document.getElementById('count');
+const number = document.getElementById('number');
 
 const textLists = [
   'Hello World','This is my App','How are you?',
@@ -55,6 +56,7 @@ const keyPress = e => {
   untyped = untyped.substring(1);
   typedfield.textContent = typed;
   untypedfield.textContent = untyped;
+  number.textContent = score;
 
   if(untyped === '') {
     createText();
@@ -81,6 +83,10 @@ const rankCheck = score => {
 
 const gameOver = id => {
    clearInterval(id);
+
+   const gameOverText =['タイムアップ！'];
+   untypedfield.textContent = gameOverText;
+   setTimeout(gameOverText,500)
  
   //  console.log('ゲーム終了!');
    const result = confirm(rankCheck(score));
@@ -106,8 +112,6 @@ const timer = () => {
   }, 1000);
 };
 
-// document.addEventListener('keypress', keyPress);
-
 start.addEventListener('click', () => {
 
   timer();
@@ -117,6 +121,7 @@ start.addEventListener('click', () => {
   start.style.display = 'none';
 
   document.addEventListener('keypress', keyPress);
+
 });
 
 untypedfield.textContent = 'スタートボタンで開始';
